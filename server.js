@@ -10,7 +10,7 @@ server.get("/", function(req, res){
       const weatherDescription=weatherData.weather[0].description
       const temperature= weatherData.main.temp
       const icon=weatherData.weather[0].icon
-      const imageURL= "http://openweathermap.org/img/wn/" +icon+ "@2x.png"
+      const imageURL= "http://openweathermap.org/img/wn/" + icon + "@2x.png"
       res.send("<img src = " + imageURL + ">")
 
 
