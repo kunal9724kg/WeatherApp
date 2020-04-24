@@ -1,9 +1,20 @@
 const express = require("express")
 const server = express()
 const https = require("https")
+const bodyParser = require("body-parser")
+
+server.use(bodyParser.urlencoded({extended : true}))
 
 server.get("/", function(req, res){
-  const url="https://api.openweathermap.org/data/2.5/weather?appid=1eb1071bd5782b657a71c5aa210f49d9&q=kolkata&units=metric"
+  res.sendFile(__dirname + "/index.html")
+})
+
+server.post("/", function(req, res){
+  const apiKey= "1eb1071bd5782b657a71c5aa210f49d9"
+  const unit= "metric"
+  const city = req.body.CityName
+  const url="https://api.openweathermap.org/data/2.5/weather?appid=" + apiKey + "&q=" + city + "&units=" + unit;
+
   https.get(url, function(response){
 
     response.on("data", function(data){
@@ -19,8 +30,9 @@ server.get("/", function(req, res){
     })
 
   })
-
 })
+
+
 
 
 server.listen(3000, function(){
