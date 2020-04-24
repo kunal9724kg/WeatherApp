@@ -24,6 +24,8 @@ server.post("/", function(req, res){
       const temperature= weatherData.main.temp
       const icon=weatherData.weather[0].icon
       const imageURL= "http://openweathermap.org/img/wn/" + icon + "@2x.png"
+      res.write("<h1>Weather in "+ city +" is "+weatherDescription + "</h1>");
+      res.write("<p>Temperature in "+ city +" is: "+temperature+ " degree Celcius</p>");
       res.write("<img src = " + imageURL + ">")
       res.send()
 
